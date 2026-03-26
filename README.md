@@ -2,6 +2,6 @@
 
 <div style="text-align: center;">
   <a href="https://github.com/ash-kernel/spicedeck" target="_blank">
-    <img src="banner.png" width="400">
+    <img style="text-align: center;" src="banner.png" width="400">
   </a>
 </div>
