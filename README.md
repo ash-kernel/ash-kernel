@@ -1,19 +1,37 @@
 ### Ash - My projects
 
-### SpiceDeck - Unified game launcher
-[![SpiceDeck](assets/spicedeck_banner.png)](https://github.com/ash-kernel/spicedeck)
-![Electron](https://img.shields.io/badge/Electron-black?logo=electron)
-![Node.js](https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white)
+### SpiceDeck — Unified game launcher
+<p align="center">
+  <a href="https://github.com/ash-kernel/spicedeck">
+    <img src="assets/spicedeck_banner.png" width="700">
+  </a>
+</p>
+<p align="center">
+  <img src="https://img.shields.io/badge/Electron-black?logo=electron">
+  <img src="https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white">
+</p>
 
 ### Zetonic — Custom Chromium new tab
-[![Zetonic](assets/zetonic_banner.png)](https://github.com/ash-kernel/Zetonic)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
-![HTML](https://img.shields.io/badge/HTML-E34F26?logo=html5&logoColor=white)
-![CSS](https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=white)
+<p align="center">
+  <a href="https://github.com/ash-kernel/Zetonic">
+    <img src="assets/zetonic_banner.png" width="700">
+  </a>
+</p>
+<p align="center">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black">
+  <img src="https://img.shields.io/badge/HTML-E34F26?logo=html5&logoColor=white">
+  <img src="https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=white">
+</p>
 
 ### Gettree — Advanced tree CLI
-[![Gettree](assets/gettree_banner.png)](https://github.com/ash-kernel/Gettree)
-![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=yellow)
+<p align="center">
+  <a href="https://github.com/ash-kernel/Gettree">
+    <img src="assets/gettree_banner.png" width="700">
+  </a>
+</p>
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=yellow">
+</p>
 
 ## About
 - Developer tools, performance-first apps
