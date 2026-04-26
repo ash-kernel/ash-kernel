@@ -25,7 +25,7 @@
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white)](https://linkedin.com/in/logesh-p-safe)
 
-[![X](https://img.shields.io/badge/X-000000?logo=x&logoColor=white)](https://x.com/imsoniche)
+[![X](https://img.shields.io/badge/X-000000?logo=x&logoColor=white)](https://x.com/iamsoniche)
 
 [![Discord](https://img.shields.io/badge/ashkunx%230000-5865F2?logo=discord&logoColor=white)](https://discord.com/users/872302673460879422)
 
