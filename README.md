@@ -11,6 +11,17 @@
   <img src="https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white">
 </p>
 
+### ExitPing — A modern internet speedtester
+<p align="center">
+  <a href="https://github.com/ash-kernel/spicedeck">
+    <img src="assets/spicedeck_banner.png" width="700">
+  </a>
+</p>
+<p align="center">
+  <img src="https://img.shields.io/badge/Electron-black?logo=electron">
+  <img src="https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white">
+</p>
+
 ### Zetonic — Custom Chromium new tab
 <p align="center">
   <a href="https://github.com/ash-kernel/Zetonic">
