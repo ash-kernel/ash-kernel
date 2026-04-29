@@ -13,8 +13,8 @@
 
 ### ExitPing — A modern internet speedtester
 <p align="center">
-  <a href="https://github.com/ash-kernel/spicedeck">
-    <img src="assets/spicedeck_banner.png" width="700">
+  <a href="https://github.com/ash-kernel/exitping">
+    <img src="assets/exitping_banner.png" width="700">
   </a>
 </p>
 <p align="center">
