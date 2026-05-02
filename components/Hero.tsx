@@ -65,7 +65,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           className="text-6xl md:text-8xl font-bold mb-8 leading-tight text-white"
         >
-          Hi, I'm Ash
+          Hi, I'm Logesh
         </motion.h1>
 
         <motion.p
