@@ -119,37 +119,3 @@ export default function Hero() {
     </section>
   );
 }
-          <a
-            href="https://github.com/ash-kernel"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group glass px-8 py-4 rounded-full hover:bg-white/10 transition-all magnetic-button flex items-center gap-2"
-          >
-            <Github size={18} />
-            <span>GitHub</span>
-          </a>
-        </motion.div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 1 }}
-          className="absolute bottom-12 left-1/2 transform -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-2"
-          >
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="w-1.5 h-1.5 bg-white/50 rounded-full"
-            />
-          </motion.div>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
