@@ -4,9 +4,6 @@ const nextConfig = {
     domains: ['raw.githubusercontent.com', 'github.com'],
     unoptimized: true,
   },
-  experimental: {
-    optimizeCss: true,
-  },
 
   // 🔥 ADD THIS
   typescript: {
