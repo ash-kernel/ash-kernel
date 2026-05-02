@@ -8,20 +8,25 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors: {
-        dark: {
-          50: '#18181b',
-          100: '#0f0f12',
-          200: '#0a0a0d',
-          300: '#050507',
-          400: '#000000',
-        },
-        accent: {
-          blue: '#3b82f6',
-          cyan: '#06b6d4',
-          purple: '#8b5cf6',
-        },
-      },
+  colors: {
+    border: '#27272a',   // ← FIX (this solves your error)
+    background: '#0f0f12',
+    foreground: '#ffffff',
+
+    dark: {
+      50: '#18181b',
+      100: '#0f0f12',
+      200: '#0a0a0d',
+      300: '#050507',
+      400: '#000000',
+    },
+
+    accent: {
+      blue: '#3b82f6',
+      cyan: '#06b6d4',
+      purple: '#8b5cf6',
+    },
+  },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-mesh': 'radial-gradient(at 27% 37%, hsla(215, 98%, 61%, 0.15) 0px, transparent 50%), radial-gradient(at 97% 21%, hsla(125, 98%, 72%, 0.1) 0px, transparent 50%), radial-gradient(at 52% 99%, hsla(354, 98%, 61%, 0.1) 0px, transparent 50%)',
