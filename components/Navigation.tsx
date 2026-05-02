@@ -48,7 +48,7 @@ export default function Navigation() {
               e.preventDefault();
               handleNavClick('#home');
             }}
-            className="text-xl font-bold gradient-text cursor-pointer"
+            className="text-xl font-bold text-white cursor-pointer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

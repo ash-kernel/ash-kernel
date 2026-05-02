@@ -32,7 +32,7 @@
   }
 
   .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500;
+    @apply text-white;
   }
 
   .noise-bg {
@@ -78,7 +78,7 @@
 
   /* Selection */
   ::selection {
-    @apply bg-accent-blue/30 text-white;
+    @apply bg-white/20 text-white;
   }
 }
 

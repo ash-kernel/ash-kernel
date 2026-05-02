@@ -18,31 +18,29 @@ export async function fetchGitHubRepos(): Promise<EnhancedRepo[]> {
 
     const repos: GitHubRepo[] = await response.json();
 
-    // Filter out forks and enhance with banner URLs
-    const enhancedRepos: EnhancedRepo[] = await Promise.all(
-      repos
-        .filter((repo) => !repo.fork)
-        .map(async (repo) => {
-          const priority = PRIORITY_REPOS.includes(repo.name);
-          const bannerUrl = await checkBannerExists(repo.full_name, repo.default_branch);
-          
-          return {
-            ...repo,
-            bannerUrl,
-            priority,
-          };
-        })
+    // Find the featured project (first in PRIORITY_REPOS)
+    const featuredRepoName = PRIORITY_REPOS[0]; // 'gettree'
+    const featuredRepo = repos.find(
+      (repo) => !repo.fork && repo.name === featuredRepoName
     );
 
-    // Sort: priority repos first, then by stars, then by update date
-    return enhancedRepos.sort((a, b) => {
-      if (a.priority && !b.priority) return -1;
-      if (!a.priority && b.priority) return 1;
-      if (b.stargazers_count !== a.stargazers_count) {
-        return b.stargazers_count - a.stargazers_count;
-      }
-      return new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime();
-    });
+    if (!featuredRepo) {
+      return [];
+    }
+
+    // Enhance with banner URL
+    const bannerUrl = await checkBannerExists(
+      featuredRepo.full_name,
+      featuredRepo.default_branch
+    );
+
+    const enhancedRepo: EnhancedRepo = {
+      ...featuredRepo,
+      bannerUrl,
+      priority: true,
+    };
+
+    return [enhancedRepo];
   } catch (error) {
     console.error('Error fetching GitHub repos:', error);
     return [];
@@ -114,18 +112,18 @@ export async function fetchProjectDetail(repoName: string): Promise<ProjectDetai
 }
 
 export function generateGradient(seed: string): string {
-  // Generate consistent gradient based on repo name
+  // Generate consistent neutral gradient based on repo name
   const hash = seed.split('').reduce((acc, char) => {
     return char.charCodeAt(0) + ((acc << 5) - acc);
   }, 0);
   
   const colors = [
-    'from-blue-600 to-cyan-600',
-    'from-purple-600 to-pink-600',
-    'from-emerald-600 to-teal-600',
-    'from-orange-600 to-red-600',
-    'from-indigo-600 to-purple-600',
-    'from-cyan-600 to-blue-600',
+    'from-slate-700 to-slate-800',
+    'from-slate-600 to-slate-700',
+    'from-slate-800 to-slate-900',
+    'from-slate-700 to-slate-900',
+    'from-slate-600 to-slate-800',
+    'from-slate-800 to-slate-700',
   ];
   
   const index = Math.abs(hash) % colors.length;

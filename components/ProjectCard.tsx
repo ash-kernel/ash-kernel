@@ -71,7 +71,7 @@ export default function ProjectCard({ repo, index, onClick }: ProjectCardProps) 
         {/* Content */}
         <div className="p-6 flex-1 flex flex-col">
           <div className="flex items-start justify-between mb-3">
-            <h3 className="text-xl font-bold group-hover:text-accent-cyan transition-colors">
+            <h3 className="text-xl font-bold group-hover:text-white transition-colors">
               {repo.name}
             </h3>
             
@@ -92,7 +92,7 @@ export default function ProjectCard({ repo, index, onClick }: ProjectCardProps) 
             <div className="flex items-center gap-3">
               {repo.language && (
                 <div className="flex items-center gap-1.5">
-                  <div className="w-2 h-2 rounded-full bg-accent-blue" />
+                  <div className="w-2 h-2 rounded-full bg-white/60" />
                   <span>{repo.language}</span>
                 </div>
               )}

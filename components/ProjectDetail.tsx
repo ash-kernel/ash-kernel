@@ -99,7 +99,7 @@ export default function ProjectDetail({ repo, onClose }: ProjectDetailProps) {
               <div className="flex flex-wrap gap-4 mb-6">
                 {repo.stargazers_count > 0 && (
                   <div className="flex items-center gap-2 glass px-4 py-2 rounded-full">
-                    <Star size={16} className="fill-current text-yellow-400" />
+                    <Star size={16} className="fill-current text-white/80" />
                     <span className="text-sm">{repo.stargazers_count} stars</span>
                   </div>
                 )}
@@ -146,7 +146,7 @@ export default function ProjectDetail({ repo, onClose }: ProjectDetailProps) {
               {/* Overview */}
               <div>
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                  <div className="w-1 h-6 bg-accent-cyan rounded-full" />
+                  <div className="w-1 h-6 bg-white/60 rounded-full" />
                   Overview
                 </h3>
                 <div className="space-y-3 text-white/70">
@@ -179,7 +179,7 @@ export default function ProjectDetail({ repo, onClose }: ProjectDetailProps) {
               {/* Additional Info */}
               <div>
                 <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                  <div className="w-1 h-6 bg-accent-purple rounded-full" />
+                  <div className="w-1 h-6 bg-white/40 rounded-full" />
                   Repository Info
                 </h3>
                 <div className="space-y-3 text-white/70 text-sm">

@@ -9,37 +9,31 @@ export default function About() {
       icon: Code2,
       title: 'Frontend Development',
       description: 'React, Next.js, TypeScript, Tailwind',
-      color: 'from-blue-500 to-cyan-500',
     },
     {
       icon: Database,
       title: 'Backend Development',
       description: 'Node.js, Python, APIs, Databases',
-      color: 'from-purple-500 to-pink-500',
     },
     {
       icon: Palette,
       title: 'UI/UX Design',
       description: 'Modern, clean, user-focused interfaces',
-      color: 'from-emerald-500 to-teal-500',
     },
     {
       icon: Zap,
       title: 'Performance',
       description: 'Optimization, speed, efficiency',
-      color: 'from-orange-500 to-red-500',
     },
     {
       icon: Globe,
       title: 'Web Technologies',
       description: 'Modern web standards & best practices',
-      color: 'from-indigo-500 to-purple-500',
     },
     {
       icon: Terminal,
       title: 'DevOps & Tools',
       description: 'Git, CI/CD, Docker, Cloud platforms',
-      color: 'from-cyan-500 to-blue-500',
     },
   ];
 
@@ -47,7 +41,7 @@ export default function About() {
     <section id="about" className="min-h-screen py-32 px-6 relative">
       {/* Background */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-accent-blue/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto">
@@ -64,7 +58,7 @@ export default function About() {
           </div>
           
           <h2 className="text-5xl md:text-6xl font-bold mb-6">
-            What I <span className="gradient-text">Do</span>
+            What I Do
           </h2>
         </motion.div>
 
@@ -102,22 +96,17 @@ export default function About() {
             >
               <div className="glass hover:glass-strong p-8 rounded-2xl h-full transition-all duration-500">
                 {/* Icon */}
-                <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${skill.color} mb-6 group-hover:scale-110 transition-transform duration-500`}>
-                  <skill.icon size={24} className="text-white" />
+                <div className="inline-flex p-4 rounded-xl bg-white/10 mb-6 group-hover:bg-white/20 transition-colors duration-500">
+                  <skill.icon size={24} className="text-white/80 group-hover:text-white transition-colors" />
                 </div>
 
                 {/* Content */}
-                <h3 className="text-xl font-bold mb-3 group-hover:text-accent-cyan transition-colors">
+                <h3 className="text-xl font-bold mb-3 group-hover:text-white transition-colors">
                   {skill.title}
                 </h3>
                 <p className="text-white/60 text-sm leading-relaxed">
                   {skill.description}
                 </p>
-
-                {/* Glow effect on hover */}
-                <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-xl bg-gradient-to-br ${skill.color}`} 
-                  style={{ filter: 'blur(40px)' }} 
-                />
               </div>
             </motion.div>
           ))}
@@ -131,7 +120,7 @@ export default function About() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="mt-20 text-center"
         >
-          <div className="inline-block glass-strong px-8 py-6 rounded-3xl border-l-4 border-accent-purple">
+          <div className="inline-block glass-strong px-8 py-6 rounded-2xl border-l-4 border-white/30">
             <p className="text-lg text-white/80 italic max-w-2xl">
               "Great software is not just about code—it's about solving real problems 
               with elegance, empathy, and attention to detail."

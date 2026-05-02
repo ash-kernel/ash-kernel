@@ -1,0 +1,32 @@
+{
+  "contacts": [
+    {
+      "label": "GitHub",
+      "href": "https://github.com/ash-kernel",
+      "description": "Check out my repositories",
+      "icon": "Github",
+      "logoUrl": "https://cdn.simpleicons.org/github/ffffff"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://linkedin.com/in/logesh-p-safe",
+      "description": "Connect with me professionally",
+      "icon": "Linkedin",
+      "logoUrl": "https://cdn.simpleicons.org/linkedin/ffffff"
+    },
+    {
+      "label": "Discord",
+      "href": "https://discord.com/users/872302673460879422",
+      "description": "Dm me on discord",
+      "icon": "MessageCircle",
+      "logoUrl": "https://cdn.simpleicons.org/discord/ffffff"
+    },
+    {
+      "label": "Instagram",
+      "href": "https://www.instagram.com/ashkunx/",
+      "description": "Check out my Instagram",
+      "icon": "Instagram",
+      "logoUrl": "https://cdn.simpleicons.org/instagram/ffffff"
+    }
+  ]
+}

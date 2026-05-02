@@ -4,12 +4,12 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { EnhancedRepo } from '@/types';
 import { fetchGitHubRepos } from '@/lib/github';
-import ProjectCard from './ProjectCard';
 import ProjectDetail from './ProjectDetail';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Star, ExternalLink, Github } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Projects() {
-  const [repos, setRepos] = useState<EnhancedRepo[]>([]);
+  const [repo, setRepo] = useState<EnhancedRepo | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedRepo, setSelectedRepo] = useState<EnhancedRepo | null>(null);
 
@@ -17,7 +17,9 @@ export default function Projects() {
     const loadRepos = async () => {
       setLoading(true);
       const data = await fetchGitHubRepos();
-      setRepos(data);
+      if (data.length > 0) {
+        setRepo(data[0]);
+      }
       setLoading(false);
     };
 
@@ -26,14 +28,14 @@ export default function Projects() {
 
   return (
     <>
-      <section id="projects" className="min-h-screen py-32 px-6 relative">
-        {/* Background Elements */}
+      <section id="projects" className="min-h-screen py-32 px-6 relative flex items-center">
+        {/* Subtle background */}
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-accent-purple/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-accent-cyan/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
         </div>
 
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-6xl mx-auto w-full">
           {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -43,69 +45,120 @@ export default function Projects() {
             className="text-center mb-20"
           >
             <div className="inline-flex items-center gap-2 glass px-4 py-2 rounded-full mb-6">
-              <span className="text-sm text-white/70">Portfolio</span>
+              <span className="text-sm text-white/70">Showcase</span>
             </div>
             
             <h2 className="text-5xl md:text-6xl font-bold mb-6">
-              Featured <span className="gradient-text">Projects</span>
+              My Work
             </h2>
-            
-            <p className="text-xl text-white/60 max-w-2xl mx-auto">
-              A collection of projects built with passion and precision.
-              Dynamically fetched from GitHub.
-            </p>
           </motion.div>
 
-          {/* Projects Grid */}
+          {/* Featured Project */}
           {loading ? (
             <div className="flex items-center justify-center py-20">
-              <Loader2 className="w-8 h-8 animate-spin text-accent-cyan" />
+              <Loader2 className="w-8 h-8 animate-spin text-white/50" />
             </div>
-          ) : repos.length === 0 ? (
-            <div className="text-center py-20">
-              <p className="text-white/60">No projects found</p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {repos.map((repo, index) => (
-                <ProjectCard
-                  key={repo.id}
-                  repo={repo}
-                  index={index}
-                  onClick={() => setSelectedRepo(repo)}
-                />
-              ))}
-            </div>
-          )}
-
-          {/* Stats */}
-          {!loading && repos.length > 0 && (
+          ) : repo ? (
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6"
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              onClick={() => setSelectedRepo(repo)}
+              className="group cursor-pointer"
             >
-              {[
-                { label: 'Projects', value: repos.length },
-                { label: 'Stars', value: repos.reduce((acc, r) => acc + r.stargazers_count, 0) },
-                { label: 'Languages', value: new Set(repos.map(r => r.language).filter(Boolean)).size },
-                { label: 'Featured', value: repos.filter(r => r.priority).length },
-              ].map((stat, index) => (
-                <div
-                  key={stat.label}
-                  className="glass p-6 rounded-2xl text-center"
-                >
-                  <div className="text-3xl font-bold gradient-text mb-2">
-                    {stat.value}
-                  </div>
-                  <div className="text-sm text-white/60">
-                    {stat.label}
+              <div className="glass hover:glass-strong rounded-3xl overflow-hidden transition-all duration-500 flex flex-col lg:flex-row h-auto lg:h-[500px]">
+                {/* Banner */}
+                <div className="relative w-full lg:w-1/2 h-64 lg:h-full overflow-hidden">
+                  {repo.bannerUrl ? (
+                    <Image
+                      src={repo.bannerUrl}
+                      alt={repo.name}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      priority
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-slate-800 to-slate-900 group-hover:from-slate-700 group-hover:to-slate-800 transition-all duration-700" />
+                  )}
+                  
+                  {/* Overlay on hover */}
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="text-white text-lg font-medium flex items-center gap-2">
+                      <span>View Details</span>
+                      <ExternalLink size={20} />
+                    </div>
                   </div>
                 </div>
-              ))}
+
+                {/* Content */}
+                <div className="p-8 lg:p-12 w-full lg:w-1/2 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center gap-3 mb-4">
+                      <h3 className="text-3xl md:text-4xl font-bold group-hover:text-white transition-colors">
+                        {repo.name}
+                      </h3>
+                      {repo.stargazers_count > 0 && (
+                        <div className="flex items-center gap-2 text-sm text-white/60 ml-auto">
+                          <Star size={16} className="fill-current" />
+                          <span className="font-medium">{repo.stargazers_count}</span>
+                        </div>
+                      )}
+                    </div>
+
+                    <p className="text-white/70 text-lg mb-6 leading-relaxed">
+                      {repo.description || 'No description available'}
+                    </p>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2 mb-8">
+                      {repo.language && (
+                        <span className="px-3 py-1.5 rounded-full bg-white/10 text-sm text-white/80 flex items-center gap-2">
+                          <span className="w-2 h-2 rounded-full bg-white/60" />
+                          {repo.language}
+                        </span>
+                      )}
+                      {repo.topics.slice(0, 3).map((topic) => (
+                        <span key={topic} className="px-3 py-1.5 rounded-full bg-white/5 text-sm text-white/60">
+                          {topic}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Actions */}
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <a
+                      href={repo.html_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="glass hover:glass-strong px-6 py-3 rounded-xl transition-all flex items-center justify-center gap-2 text-sm font-medium group/btn"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <Github size={18} />
+                      View Repository
+                    </a>
+                    {repo.homepage && (
+                      <a
+                        href={repo.homepage}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-white/10 hover:bg-white/20 px-6 py-3 rounded-xl transition-all flex items-center justify-center gap-2 text-sm font-medium"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <ExternalLink size={18} />
+                        Live Demo
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
             </motion.div>
+          ) : (
+            <div className="text-center py-20">
+              <p className="text-white/60">No projects found</p>
+            </div>
           )}
         </div>
       </section>
