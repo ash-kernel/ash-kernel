@@ -3,6 +3,11 @@ import { GitHubRepo, EnhancedRepo, ProjectDetailData } from '@/types';
 const GITHUB_USERNAME = 'ash-kernel';
 const PRIORITY_REPOS = ['gettree', 'spicedeck', 'Zetonic', 'exitping'];
 
+// Generate the local path based on the repo name
+const getLocalBannerUrl = (repoName: string) => {
+  return `/assets/${repoName.toLowerCase()}_banner.png`;
+};
+
 export async function fetchGitHubRepos(): Promise<EnhancedRepo[]> {
   try {
     const response = await fetch(
@@ -27,14 +32,9 @@ export async function fetchGitHubRepos(): Promise<EnhancedRepo[]> {
 
         if (!repo) return null;
 
-        const bannerUrl = await checkBannerExists(
-          repo.full_name,
-          repo.default_branch
-        );
-
         return {
           ...repo,
-          bannerUrl,
+          bannerUrl: getLocalBannerUrl(repo.name),
           priority: true,
         };
       })
@@ -46,27 +46,6 @@ export async function fetchGitHubRepos(): Promise<EnhancedRepo[]> {
     console.error('Error fetching GitHub repos:', error);
     return [];
   }
-}
-
-async function checkBannerExists(fullName: string, branch: string): Promise<string | undefined> {
-  const extensions = ['png', 'jpg', 'jpeg'];
-  // Extract repo name from "username/repoName" and convert to lowercase for the file match
-  const repoName = fullName.split('/')[1].toLowerCase(); 
-  
-  for (const ext of extensions) {
-    // Updated URL pattern: {reponame}_banner.{ext}
-    const url = `https://raw.githubusercontent.com/${fullName}/${branch}/${repoName}_banner.${ext}`;
-    try {
-      const response = await fetch(url, { method: 'HEAD' });
-      if (response.ok) {
-        return url;
-      }
-    } catch {
-      // Continue to next extension
-    }
-  }
-  
-  return undefined;
 }
 
 export async function fetchProjectDetail(repoName: string): Promise<ProjectDetailData | null> {
@@ -100,11 +79,9 @@ export async function fetchProjectDetail(repoName: string): Promise<ProjectDetai
       // README is optional
     }
 
-    const bannerUrl = await checkBannerExists(repo.full_name, repo.default_branch);
-
     return {
       ...repo,
-      bannerUrl,
+      bannerUrl: getLocalBannerUrl(repo.name),
       readme,
       languages,
       priority: PRIORITY_REPOS.includes(repo.name),
