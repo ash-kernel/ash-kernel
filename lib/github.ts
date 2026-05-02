@@ -50,9 +50,12 @@ export async function fetchGitHubRepos(): Promise<EnhancedRepo[]> {
 
 async function checkBannerExists(fullName: string, branch: string): Promise<string | undefined> {
   const extensions = ['png', 'jpg', 'jpeg'];
+  // Extract repo name from "username/repoName" and convert to lowercase for the file match
+  const repoName = fullName.split('/')[1].toLowerCase(); 
   
   for (const ext of extensions) {
-    const url = `https://raw.githubusercontent.com/${fullName}/${branch}/banner.${ext}`;
+    // Updated URL pattern: {reponame}_banner.{ext}
+    const url = `https://raw.githubusercontent.com/${fullName}/${branch}/${repoName}_banner.${ext}`;
     try {
       const response = await fetch(url, { method: 'HEAD' });
       if (response.ok) {
