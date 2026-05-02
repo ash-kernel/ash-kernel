@@ -5,7 +5,7 @@ import { X, Star, GitFork, ExternalLink, Calendar, Code } from 'lucide-react';
 import { EnhancedRepo } from '@/types';
 import { generateGradient } from '@/lib/github';
 import Image from 'next/image';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 interface ProjectDetailProps {
   repo: EnhancedRepo;
@@ -13,7 +13,8 @@ interface ProjectDetailProps {
 }
 
 export default function ProjectDetail({ repo, onClose }: ProjectDetailProps) {
-  // Prevent body scroll when modal is open
+  const [imgError, setImgError] = useState(false);
+
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -21,7 +22,6 @@ export default function ProjectDetail({ repo, onClose }: ProjectDetailProps) {
     };
   }, []);
 
-  // Close on escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -56,7 +56,6 @@ export default function ProjectDetail({ repo, onClose }: ProjectDetailProps) {
           className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-[#0a0a0a] border border-white/5 shadow-2xl rounded-3xl"
           onClick={(e) => e.stopPropagation()}
         >
-          {/* Close Button */}
           <button
             onClick={onClose}
             className="absolute top-6 right-6 z-10 bg-black/50 backdrop-blur-md border border-white/10 p-3 rounded-full hover:bg-white/10 transition-colors"
@@ -65,9 +64,9 @@ export default function ProjectDetail({ repo, onClose }: ProjectDetailProps) {
             <X size={18} className="text-white/70 hover:text-white" />
           </button>
 
-          {/* Hero Banner (Optimized Aspect Ratio) */}
+          {/* Banner with Error Fallback */}
           <div className="relative w-full aspect-video md:aspect-[21/9] overflow-hidden rounded-t-3xl bg-slate-950">
-            {repo.bannerUrl ? (
+            {repo.bannerUrl && !imgError ? (
               <Image
                 src={repo.bannerUrl}
                 alt={repo.name}
@@ -75,6 +74,7 @@ export default function ProjectDetail({ repo, onClose }: ProjectDetailProps) {
                 className="object-cover"
                 sizes="(max-width: 1200px) 100vw, 1200px"
                 priority
+                onError={() => setImgError(true)}
               />
             ) : (
               <div className={`w-full h-full bg-gradient-to-br ${generateGradient(repo.name)}`}>
@@ -84,9 +84,8 @@ export default function ProjectDetail({ repo, onClose }: ProjectDetailProps) {
             <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/50 to-transparent" />
           </div>
 
-          {/* Content */}
           <div className="p-8 md:p-12 -mt-10 relative z-10">
-            {/* Header */}
+            {/* ... Rest of the component remains exactly the same as previously formatted */}
             <div className="mb-10">
               <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-white mb-4">
                 {repo.name}
@@ -95,7 +94,6 @@ export default function ProjectDetail({ repo, onClose }: ProjectDetailProps) {
                 {repo.description || 'No description available'}
               </p>
 
-              {/* Stats */}
               <div className="flex flex-wrap gap-3 mb-8">
                 {repo.stargazers_count > 0 && (
                   <div className="flex items-center gap-2 bg-white/5 border border-white/5 px-4 py-2 rounded-full">
@@ -117,7 +115,6 @@ export default function ProjectDetail({ repo, onClose }: ProjectDetailProps) {
                 )}
               </div>
 
-              {/* Action Buttons */}
               <div className="flex flex-wrap gap-4">
                 <a
                   href={repo.html_url}
@@ -141,9 +138,7 @@ export default function ProjectDetail({ repo, onClose }: ProjectDetailProps) {
               </div>
             </div>
 
-            {/* Details Section */}
             <div className="grid md:grid-cols-2 gap-12 pt-8 border-t border-white/5">
-              {/* Overview */}
               <div>
                 <h3 className="text-sm font-medium text-white/40 uppercase tracking-wider mb-6">
                   Overview
@@ -175,7 +170,6 @@ export default function ProjectDetail({ repo, onClose }: ProjectDetailProps) {
                 </div>
               </div>
 
-              {/* Additional Info */}
               <div>
                 <h3 className="text-sm font-medium text-white/40 uppercase tracking-wider mb-6">
                   Repository Info
@@ -197,7 +191,6 @@ export default function ProjectDetail({ repo, onClose }: ProjectDetailProps) {
               </div>
             </div>
 
-            {/* Featured Badge */}
             {repo.priority && (
               <div className="mt-12 bg-white/[0.02] border border-white/10 p-6 rounded-2xl flex items-start gap-4">
                 <div className="text-xl pt-0.5">✨</div>
