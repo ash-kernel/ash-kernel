@@ -47,12 +47,13 @@ export default function ProjectCard({ repo, index, onClick }: ProjectCardProps) 
         
         {/* Banner with Error Fallback */}
         <div className="relative w-full aspect-video overflow-hidden bg-slate-950">
-          {repo.bannerUrl && !imgError ? (
+        {repo.bannerUrl && !imgError ? (
             <Image
               src={repo.bannerUrl}
               alt={repo.name}
               fill
-              className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+              // Changed object-cover to object-contain, added p-6 for breathing room
+              className="object-contain p-6 group-hover:scale-105 transition-transform duration-700 ease-out"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
               onError={() => setImgError(true)}
             />

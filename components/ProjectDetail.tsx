@@ -66,12 +66,15 @@ export default function ProjectDetail({ repo, onClose }: ProjectDetailProps) {
 
           {/* Banner with Error Fallback */}
           <div className="relative w-full aspect-video md:aspect-[21/9] overflow-hidden rounded-t-3xl bg-slate-950">
+            {/* Banner with Error Fallback */}
+          <div className="relative w-full aspect-video md:aspect-[21/9] overflow-hidden rounded-t-3xl bg-black">
             {repo.bannerUrl && !imgError ? (
               <Image
                 src={repo.bannerUrl}
                 alt={repo.name}
                 fill
-                className="object-cover"
+                // Changed to object-contain and added padding
+                className="object-contain p-8 md:p-12"
                 sizes="(max-width: 1200px) 100vw, 1200px"
                 priority
                 onError={() => setImgError(true)}
