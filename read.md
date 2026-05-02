@@ -233,10 +233,12 @@ Built with:
 - [Framer Motion](https://www.framer.com/motion/)
 - [Lucide Icons](https://lucide.dev/)
 
-## 🌟 Show Your Support
+##  Show Your Support
 
 If you like this project, give it a ⭐ on GitHub!
 
 ---
 
 **Built by Ash** | [GitHub](https://github.com/ash-kernel)
+
+test
