@@ -18,29 +18,30 @@ export async function fetchGitHubRepos(): Promise<EnhancedRepo[]> {
 
     const repos: GitHubRepo[] = await response.json();
 
-    // Find the featured project (first in PRIORITY_REPOS)
-    const featuredRepoName = PRIORITY_REPOS[0]; // 'gettree'
-    const featuredRepo = repos.find(
-      (repo) => !repo.fork && repo.name === featuredRepoName
+    // Get all featured projects
+    const enhancedRepos: EnhancedRepo[] = await Promise.all(
+      PRIORITY_REPOS.map(async (repoName) => {
+        const repo = repos.find(
+          (r) => !r.fork && r.name.toLowerCase() === repoName.toLowerCase()
+        );
+
+        if (!repo) return null;
+
+        const bannerUrl = await checkBannerExists(
+          repo.full_name,
+          repo.default_branch
+        );
+
+        return {
+          ...repo,
+          bannerUrl,
+          priority: true,
+        };
+      })
     );
 
-    if (!featuredRepo) {
-      return [];
-    }
-
-    // Enhance with banner URL
-    const bannerUrl = await checkBannerExists(
-      featuredRepo.full_name,
-      featuredRepo.default_branch
-    );
-
-    const enhancedRepo: EnhancedRepo = {
-      ...featuredRepo,
-      bannerUrl,
-      priority: true,
-    };
-
-    return [enhancedRepo];
+    // Filter out null values and return
+    return enhancedRepos.filter((repo) => repo !== null) as EnhancedRepo[];
   } catch (error) {
     console.error('Error fetching GitHub repos:', error);
     return [];
