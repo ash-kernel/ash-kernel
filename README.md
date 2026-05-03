@@ -3,7 +3,7 @@
 ### SpiceDeck — Unified game launcher
 <p align="center">
   <a href="https://github.com/ash-kernel/spicedeck">
-    <img src="assets/spicedeck_banner.png" width="700">
+    <img src="assets/spicedeck_banner.png" width="600">
   </a>
 </p>
 <p align="center">
@@ -14,7 +14,7 @@
 ### ExitPing — A modern internet speedtester
 <p align="center">
   <a href="https://github.com/ash-kernel/exitping">
-    <img src="assets/exitping_banner.png" width="700">
+    <img src="assets/exitping_banner.png" width="600">
   </a>
 </p>
 <p align="center">
@@ -25,7 +25,7 @@
 ### Zetonic — Custom Chromium new tab
 <p align="center">
   <a href="https://github.com/ash-kernel/Zetonic">
-    <img src="assets/zetonic_banner.png" width="700">
+    <img src="assets/zetonic_banner.png" width="600">
   </a>
 </p>
 <p align="center">
@@ -37,7 +37,7 @@
 ### Gettree — Advanced tree CLI
 <p align="center">
   <a href="https://github.com/ash-kernel/Gettree">
-    <img src="assets/gettree_banner.png" width="700">
+    <img src="assets/gettree_banner.png" width="600">
   </a>
 </p>
 <p align="center">
